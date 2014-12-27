@@ -21,6 +21,9 @@ app.controller('SoapCtrl', function($scope, $http) {
     $scope.selMeth = function(index) {
         $scope.selectedMethod = $scope.selectedService.items[index];
     };
+    $scope.changeService = function() {
+        $scope.selectedMethod = null;
+    };
     $scope.makeAjax = function() {
         var form = $('#Form').serializeArray();
         var model = {};
@@ -29,13 +32,11 @@ app.controller('SoapCtrl', function($scope, $http) {
         });
         console.log(JSON.stringify(model));
         console.log($scope.selectedService.wsdl);
-
         var url = $scope.selectedService.wsdl;
-
         /*$http.post(url, model).then(function(obj) {
             console.log(obj);
         }, function(e) {
             console.log(e);
         });*/
-    }
+    };
 });

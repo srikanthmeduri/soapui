@@ -25,7 +25,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-3 border">
-                <select ng-model="selectedService" ng-options="opt as opt.serviceName for opt in data" id="serviceName" name="serviceName" class="form-control" required>
+                <select ng-change="changeService()" ng-model="selectedService" ng-options="opt as opt.serviceName for opt in data" id="serviceName" name="serviceName" class="form-control" required>
                     <option value="">Choose Service</option>
                 </select>
                 <h3>Methods</h3>
