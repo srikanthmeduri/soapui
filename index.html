@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html ng-app="soap">
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body ng-controller="SoapCtrl">
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Soap-UI</a>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 border">
+                <select ng-model="selectedService" ng-options="opt as opt.serviceName for opt in data" id="serviceName" name="serviceName" class="form-control" required>
+                    <option value="">Choose Service</option>
+                </select>
+                <h3>Methods</h3>
+                <hr>
+                <div ng-repeat="m in selectedService.methods">
+                    <a href="#" ng-click="selMeth($index)">{{m}}</a>
+                </div>
+            </div>
+            <div class="col-md-1"></div>
+            <div class="col-md-8 border">
+                <div ng-if="selectedMethod">
+                    <form name="Form" id="Form" novalidate class="form-horizontal">
+                        <div class="modal-header">
+                            <h4>Service Request</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group" ng-repeat="item in selectedMethod">
+                                <label class="col-md-4 control-label">{{item.title}}</label>
+                                <div class="col-md-8">
+                                    <input type="{{item.type}}" name="{{item.key}}" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary" ng-click="makeAjax()">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="data.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>
